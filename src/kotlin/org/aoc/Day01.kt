@@ -1,6 +1,12 @@
 fun main() {
     fun part1(input: List<String>): Int {
-        return input.size
+        var count = 1
+        for (i in (0 until input.lastIndex)) {
+            if (input[i] < input[i + 1]) {
+                count++
+            }
+        }
+        return count
     }
 
     fun part2(input: List<String>): Int {
