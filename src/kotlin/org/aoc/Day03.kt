@@ -19,12 +19,13 @@ fun main() {
     }
 
 
-    fun getRating(inputData: List<String>, evaluate: (value: Int, inputData: List<String>) -> String): Int {
+    fun getRating(inputData: List<String>, lesser: Boolean): Int {
         var operateList = inputData
         var index = 0
 
         while (operateList.size > 1) {
-            val prefixData = countOneBits(operateList).joinToString("") { evaluate(it, operateList) }
+            val prefixData = countOneBits(operateList).joinToString("")
+            { if ((it >= (operateList.size / 2 + operateList.size % 2)).let { if (lesser) !it else it }) "1" else "0" }
             operateList = operateList.filter { it[index] == (prefixData[index]) }.also { index++ }
         }
 
@@ -32,10 +33,8 @@ fun main() {
     }
 
     fun part2(inputData: List<String>): Int {
-        val o2Rating =
-            getRating(inputData) { value, input -> if (value >= (input.size / 2 + input.size % 2)) "1" else "0" }
-        val co2Rating =
-            getRating(inputData) { value, input -> if (value < (input.size / 2 + input.size % 2)) "1" else "0" }
+        val o2Rating = getRating(inputData, false)
+        val co2Rating = getRating(inputData, true)
 
         return o2Rating * co2Rating
     }
