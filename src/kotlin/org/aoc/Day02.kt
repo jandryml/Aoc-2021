@@ -1,3 +1,7 @@
+package org.aoc
+
+import readInput
+
 fun main() {
     fun part1(input: List<String>): Int {
         var depth = 0
@@ -10,10 +14,8 @@ fun main() {
                 "down" -> depth += parsed[1].toInt()
                 "up" -> depth -= parsed[1].toInt()
                 else -> println("invalid ${parsed[0]}")
-
             }
         }
-
         return depth * horizon
     }
 
@@ -33,10 +35,9 @@ fun main() {
                 }
                 "down" -> aim += value
                 "up" -> aim -= value
-                else -> println("invalid ${parsed[0]}")
+                else -> println("invalid command ${parsed[0]}")
             }
         }
-
         return depth * horizon
     }
 
